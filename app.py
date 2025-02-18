@@ -1,10 +1,10 @@
 import streamlit as st
 import pickle
 
-# Load the pre-trained sentiment analysis model
-with open('sentiment_pipeline.pkl', 'rb,) as file:
-    pipeline = pickle.load(file)
-
+# Open a file in binary write mode
+with open('data.pkl', 'wb') as file:
+    # Pickle the data
+    pickle.dump(data, file)
 def get_sentiment_type(sentiment_label):
     if sentiment_label == -1:
         return "Negative"
