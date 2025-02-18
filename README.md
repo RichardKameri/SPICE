@@ -36,7 +36,9 @@ Identify common themes and specific aspects mentioned in the reviews, such as in
 
 9 Plotting a histogram of the word counts for the reviews in the DataFrame, including a KDE (Kernel Density Estimate) plot for smoother visualization
 
-![image](https://github.com/user-attachments/assets/212359cd-1b3b-47ca-9b1f-d5aef6c5bc12)
+
+![image](https://github.com/user-attachments/assets/eae253f1-a6d9-4450-93f1-c7f61483eaf9)
+
 
 10 create a new column named 'verified' in the DataFrame
 
@@ -103,7 +105,8 @@ Majority of the reviews have been verified.
 32 creates a series of subplots to visualize the top words and their weights for each topic in a 2x4 grid layout. It first sets up the subplots with plt.subplots(2, 4, figsize=(20,18), sharey=True) and flattens the axes array. The code then iterates through the topics and available subplots. For each topic, it retrieves the top words and their corresponding weights from topic_dict and creates a horizontal bar plot for each topic using ax.barh(). The y-axis is inverted for better readability, and titles are set for each subplot. Finally, common labels for the x-axis ('Word Weight') and y-axis ('Top Words') are added to the figure with fig.text(). This visualization helps to understand and compare the key terms and their importance across different topics
 
 
-![image](https://github.com/user-attachments/assets/655541f6-e373-4688-91e8-9c16c094aff8)
+![image](https://github.com/user-attachments/assets/91c5ddc4-1812-4c2e-9480-14221cbec151)
+
 
 33 Convert continuous sentiment scores into categorical sentiment labels. It uses a lambda function within the apply method to transform each sentiment score in the 'sentiment' column of the DataFrame df. If the sentiment score is greater than 0.2, the label is set to 1 (indicating positive sentiment); otherwise, it is set to -1 (indicating negative sentiment). The second line, df['sentiment'].value_counts(normalize=True), calculates and returns the percentage distribution of each sentiment label in the DataFrame.
 
