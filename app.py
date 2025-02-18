@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 
 # Load the pre-trained sentiment analysis model
-with open('sentiment_pipeline.pkl', 'rb') as file:
+with open('sentiment_pipeline.pkl') as file:
     pipeline = pickle.load(file)
 
 def get_sentiment_type(sentiment_label):
