@@ -20,8 +20,7 @@ The aim of this project is to conduct sentiment analysis on customer reviews rel
 
 Identify common themes and specific aspects mentioned in the reviews, such as in-flight services, customer service, booking process, seating comfort, and more. This will provide a comprehensive understanding of what aspects are contributing to positive or negative sentiments.
 
-                     README Summary
-
+                  
 
 
 Project Narrative: Sentiment Analysis for Passenger Experience
@@ -51,4 +50,20 @@ Customer Service Enhancement: Feedback regarding unhelpful or rude behavior from
 Communication: Keeping passengers informed about flight statuses and potential delays through timely and transparent communication can mitigate frustration and improve overall sentiment.
 
 Passenger Comfort: Insights into complaints about seating and legroom suggest that airlines should invest in amenities and services that enhance comfort, particularly on long-haul flights.
+                 WORK FLOW OF THE PROJECT
+This project conducts sentiment analysis on Kenya Airways customer reviews using Natural Language Processing (NLP).
+Key Steps:
+1.	Data Collection: Scraped reviews from airlinequality.com and stored them in a Pandas Data Frame.
+2.	Data Cleaning & Processing: Converted dates, removed stop words, lemmatized text, and prepared the data for analysis.
+3.	Exploratory Data Analysis (EDA): Analyzed word frequency, generated visualizations (word clouds, histograms, bar charts), and identified common themes.
+4.	Sentiment Analysis: Used Vader Sentiment Intensity Analyzer to classify reviews into positive, neutral, or negative categories.
+5.	Model Training & Evaluation:
+o	Logistic Regression (Best Model, 84% Accuracy)
+o	Decision Tree (70% Accuracy)
+o	Random Forest (79% Accuracy)
+o	SVM (80% Accuracy)
+6.	Insights & Recommendations:
+o	Improve punctuality and customer service.
+o	Enhance communication and social media engagement.
+o	Collect continuous passenger feedback for service improvements.
 
