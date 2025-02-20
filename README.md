@@ -1,5 +1,8 @@
 **Kenya Airways Customer Review Sentiment Analysis**
 
+![GkI0pwSXEAA8xJC](https://github.com/user-attachments/assets/1369c6ce-a1cc-407b-8bcb-a5022369a25b)
+
+
 **Business Overview**
 
 Kenya Airways is among the top airlines in Africa, and in Kenya, it holds a prominent position as the flag carrier and the largest airline in the country. Since its establishment in 1977, Kenya Airways has been a key player in both domestic and international air travel, connecting Kenya to various destinations around the world. The airline is known for its commitment to providing safe, reliable, and comfortable air travel experiences to its passengers. Over the years, Kenya Airways has built a strong brand reputation, emphasizing its African heritage and hospitality.
