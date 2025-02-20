@@ -28,7 +28,7 @@ def get_sentiment_type(sentiment_label):
         return "Unknown"
 
 def main():
-    # Set page configuration with title and icon
+    # Set page configuration with title, icon, and wide layout
     st.set_page_config(page_title="Sky Opinion", page_icon="✈️", layout="wide")
     
     # Sidebar with additional information and branding
@@ -42,78 +42,86 @@ def main():
     )
     st.sidebar.info("Enter your review in the main area and hit *Predict* to see the results.")
     
-    # Custom CSS style for more colorful, user-friendly interface
+    # Custom CSS style for an appealing, colorful user interface
     st.markdown(
         """
         <style>
         body {
-            background-color: #F0F2F6;
+            background-color: #F7F9FC;
             color: #333333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .stApp {
             background-color: #FFFFFF;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         .stButton button {
-            background-color: #2E8B57;
+            background-color: #FF7F50;
             color: #FFFFFF;
             border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
+            border-radius: 12px;
+            padding: 12px 25px;
             font-size: 16px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
         .stButton button:hover {
-            background-color: #3CB371;
+            background-color: #FF6347;
         }
         .stTextInput>div>div>input, .stTextArea>div>textarea {
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 12px;
+            padding: 12px;
             font-size: 16px;
-            border: 2px solid #2E8B57;
+            border: 2px solid #FF7F50;
         }
         .stTitle {
-            color: #2E8B57;
-            font-size: 36px;
+            color: #FF6347;
+            font-size: 42px;
             font-weight: bold;
         }
         .stSubheader {
             color: #555555;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             margin-top: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .result-box {
+            border: 3px solid #FF7F50; 
+            border-radius: 15px; 
+            padding: 20px; 
+            background-color: #FFF0E6;
+            margin-top: 20px;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
     
-    # Main page title and subtitle
+    # Main page content
     st.title("Sky Opinion")
     st.subheader("Catching the Feelings from the Flights")
     
-    # Input area for the review
-    input_text = st.text_area("Enter your review:", height=150, help="Type your flight review here to get sentiment prediction.")
+    # Input area for the review with a helpful description
+    input_text = st.text_area("Enter your review below:", height=150, 
+                              help="Type your flight review here to get a sentiment prediction.")
     
-    # Prediction button
+    # Prediction button and response
     if st.button("Predict"):
         if input_text.strip():
-            # Predict the sentiment and get confidence score
+            # Perform sentiment prediction and calculate confidence score
             sentiment_label = pipeline.predict([input_text])[0]
             confidence = pipeline.predict_proba([input_text]).max()
             
-            # Get a user-friendly sentiment type
+            # Get the sentiment type string for display
             sentiment_type = get_sentiment_type(sentiment_label)
             
-            # Display prediction results in a colored alert box
+            # Display prediction results in a styled result box
             st.markdown(
                 f"""
-                <div style="border: 2px solid #2E8B57; border-radius: 10px; padding: 15px; background-color: #E8F5E9;">
-                    <h3 style="color: #2E8B57;">Prediction Result</h3>
+                <div class="result-box">
+                    <h3 style="color: #FF6347;">Prediction Result</h3>
                     <p><strong>Sentiment Label:</strong> {sentiment_label}</p>
                     <p><strong>Sentiment Type:</strong> {sentiment_type}</p>
                     <p><strong>Confidence:</strong> {confidence:.2f}</p>
@@ -122,7 +130,16 @@ def main():
                 unsafe_allow_html=True
             )
         else:
-            st.error("Please enter a review for prediction.")
+            st.error("🚨 Please enter a review for prediction.")
+    
+    # Optional footer with developer info or additional links
+    st.markdown(
+        """
+        <hr style="border:1px solid #ddd">
+        <p style="text-align: center; font-size: 14px;">Made with ❤️ by Sky Opinion Team</p>
+        """,
+        unsafe_allow_html=True
+    )
 
 if __name__ == "__main__":
     main()
