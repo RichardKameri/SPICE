@@ -21,20 +21,39 @@ The aim of this project is to conduct sentiment analysis on customer reviews rel
 Identify common themes and specific aspects mentioned in the reviews, such as in-flight services, customer service, booking process, seating comfort, and more. This will provide a comprehensive understanding of what aspects are contributing to positive or negative sentiments.
 
                      README Summary
-This project conducts sentiment analysis on Kenya Airways customer reviews using Natural Language Processing (NLP).
-Key Steps:
-1.	Data Collection: Scraped reviews from airlinequality.com and stored them in a Pandas Data Frame.
-2.	Data Cleaning & Processing: Converted dates, removed stop words, lemmatized text, and prepared the data for analysis.
-3.	Exploratory Data Analysis (EDA): Analyzed word frequency, generated visualizations (word clouds, histograms, bar charts), and identified common themes.
-4.	Sentiment Analysis: Used Vader Sentiment Intensity Analyzer to classify reviews into positive, neutral, or negative categories.
-5.	Model Training & Evaluation:
-o	Logistic Regression (Best Model, 84% Accuracy)
-o	Decision Tree (70% Accuracy)
-o	Random Forest (79% Accuracy)
-o	SVM (80% Accuracy)
-6.	Insights & Recommendations:
-o	Improve punctuality and customer service.
-o	Enhance communication and social media engagement.
-o	Collect continuous passenger feedback for service improvements.
+Project Narrative: Sentiment Analysis for Passenger Experience
 
-      7     Deployment using streamlit
+
+In our journey to understand how passengers feel about their travel experiences, we embarked on a sentiment analysis project that combined data science techniques with practical insights. Our goal was to transform raw text feedback into actionable insights that could drive improvements across various aspects of the travel experience.
+
+Project Overview
+The project began with the collection and preprocessing of a diverse dataset, capturing sentiments expressed by passengers. Using natural language processing (NLP) techniques, we converted textual feedback into a structured form by applying methods such as CountVectorizer, which allowed us to translate text into a term-frequency matrix. This step was crucial for preparing the data for subsequent analysis.
+
+Methodology
+We explored various classification models to predict the sentiment of passenger feedback. Each model was evaluated based on its performance on the test data, with Logistic Regression emerging as the best-performing model by achieving an accuracy of 83%. This strong performance highlighted its ability to capture the nuances in the passengers' sentiments despite some challenges such as class imbalance—particularly with the neutral sentiment, which had fewer instances.
+
+Model Performance and Interpretability
+Logistic Regression: Demonstrated high accuracy and maintained transparency in how decisions were made.
+Decision Trees & Random Forest: Offered insights into complex decision boundaries, with Random Forest slightly improving performance over simpler Decision Trees.
+Support Vector Machines (SVM): Provided an alternative classification approach, reinforcing the findings from other models.
+A critical insight from our analysis was the trade-off between model interpretability and complexity. While ensemble methods like Random Forests could achieve slightly higher accuracy, the simpler models such as Logistic Regression allowed us to better understand the underlying decision-making process—an important factor when translating insights into actionable business strategies.
+
+Key Findings and Recommendations
+Our analysis not only identified the best model for sentiment prediction but also provided a roadmap for addressing key areas of passenger dissatisfaction:
+
+Punctuality Improvement: Negative sentiments linked to flight delays highlighted the need for enhanced punctuality. Prioritizing on-time performance can significantly improve passenger satisfaction.
+
+Customer Service Enhancement: Feedback regarding unhelpful or rude behavior from staff pointed to the need for improved customer service training and protocols.
+
+Communication: Keeping passengers informed about flight statuses and potential delays through timely and transparent communication can mitigate frustration and improve overall sentiment.
+
+Passenger Comfort: Insights into complaints about seating and legroom suggest that airlines should invest in amenities and services that enhance comfort, particularly on long-haul flights.
+
+Next Steps
+Looking ahead, further improvements can be achieved by:
+
+Hyperparameter Tuning: Refining the models to further boost accuracy.
+Advanced NLP Techniques: Experimenting with deep learning models to capture more subtle nuances in passenger feedback.
+Enhanced Data Collection: Increasing the volume and diversity of the dataset to reduce class imbalances and improve model robustness.
+Continuous Feedback Loops: Implementing systems to regularly collect and analyze passenger feedback, ensuring that the insights remain current and actionable.
+By integrating these recommendations, the sentiment analysis model not only stands as a powerful tool for understanding passenger experiences but also serves as a catalyst for ongoing improvements in service quality. Engaging with passengers via multiple channels, especially social media, and acting on their feedback can transform these insights into meaningful changes that elevate the overall travel experience.
