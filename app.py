@@ -1,115 +1,39 @@
-import streamlit as st
 import pickle
+import pandas as pd
+import numpy as np
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import classification_report
 
-# Placeholder for loading your trained model (update this part as needed)
-@st.cache_resource
-def load_model():
-    with open('sentiment_model.pkl', 'rb') as file:
-        model = pickle.load(file)
-    return model
+# Load your dataset (ensure it has 'text' and 'label' columns)
+df = pd.read_csv('/content/data/reviews_cleaned.csv')
 
-pipeline = load_model()
+# Feature Extraction
+X = df['text']
+y = df['label']  # Labels: -1 (Negative), 0 (Neutral), 1 (Positive)
 
-# Sample data for demonstration purposes
-data = ["This is a sample review."]
+# Convert text into numerical features using TF-IDF
+vectorizer = TfidfVectorizer(max_features=5000)
+X_tfidf = vectorizer.fit_transform(X)
 
-# Pickling data
-with open('data.pkl', 'wb') as file:
-    pickle.dump(data, file)
+# Apply SMOTE for class balancing
+smote = SMOTE(random_state=42)
+X_resampled, y_resampled = smote.fit_resample(X_tfidf, y)
 
-def get_sentiment_type(sentiment_label):
-    if sentiment_label == -1:
-        return "Negative"
-    elif sentiment_label == 0:
-        return "Neutral"
-    elif sentiment_label == 1:
-        return "Positive"
-    else:
-        return "Unknown"
+# Split the dataset
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, random_state=42)
 
-def main():
-    st.set_page_config(page_title="Sky Opinion", page_icon="✈️")
+# Train a classifier
+classifier = RandomForestClassifier(n_estimators=100, random_state=42)
+classifier.fit(X_train, y_train)
 
-    # Custom CSS style (using the provided CSS)
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .stApp {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            background-color: #FFFFFF;
-        }
-        .stButton button {
-            background-color: #2E8B57;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        .stButton button:hover {
-            background-color: #a7d1ba;
-        }
-        .stTextInput>div>div>input {
-            border-radius: 11px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .stTextInput label {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .stTitle {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .stSubheader {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+# Evaluate Model
+y_pred = classifier.predict(X_test)
+print(classification_report(y_test, y_pred))
 
-    st.title("Sky Opinion")
-    st.subheader("Catching the Feelings from the Flights")
-
-    # Input text for prediction
-    input_text = st.text_area("Enter your review:", height=150)
-
-    if st.button("Predict"):
-        if input_text:
-            # Perform sentiment prediction using the loaded model
-            sentiment_label = pipeline.predict([input_text])[0]
-            confidence = pipeline.predict_proba([input_text]).max()
-
-            # Get the sentiment type based on the sentiment label
-            sentiment_type = get_sentiment_type(sentiment_label)
-
-            # Display prediction result with improved styling
-            st.subheader("Prediction Result")
-            st.write("Sentiment Label:", sentiment_label)
-            st.write("Sentiment Type:", sentiment_type)
-            st.write("Confidence:", f"{confidence:.2f}")
-        else:
-            st.write("Please enter a review for prediction.")
-
-if __name__ == "__main__":
-    main()
+# Save the model and vectorizer
+with open('sentiment_model.pkl', 'wb') as model_file:
+    pickle.dump(Pipeline([('vectorizer', vectorizer), ('classifier', classifier)]), model_file)
