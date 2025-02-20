@@ -58,12 +58,20 @@ Key Steps:
 3.	Exploratory Data Analysis (EDA): Analyzed word frequency, generated visualizations (word clouds, histograms, bar charts), and identified common themes.
 4.	Sentiment Analysis: Used Vader Sentiment Intensity Analyzer to classify reviews into positive, neutral, or negative categories.
 5.	Model Training & Evaluation:
-o	Logistic Regression (Best Model, 84% Accuracy)
-o	Decision Tree (70% Accuracy)
-o	Random Forest (79% Accuracy)
-o	SVM (80% Accuracy)
-6.	Insights & Recommendations:
-o	Improve punctuality and customer service.
-o	Enhance communication and social media engagement.
-o	Collect continuous passenger feedback for service improvements.
+Logistic Regression ( 0.84 Accuracy)
+
+Decision Tree (0.74 Accuracy)
+
+Random Forest (0.81  Accuracy)
+
+SVM (0.84 Accuracy)
+
+
+7.	Insights & Recommendations:
+Improve punctuality and customer service.
+
+Enhance communication and social media engagement.	
+
+
+Collect continuous passenger feedback for service improvements.
 
