@@ -21,6 +21,9 @@ The aim of this project is to conduct sentiment analysis on customer reviews rel
 Identify common themes and specific aspects mentioned in the reviews, such as in-flight services, customer service, booking process, seating comfort, and more. This will provide a comprehensive understanding of what aspects are contributing to positive or negative sentiments.
 
                      README Summary
+
+
+
 Project Narrative: Sentiment Analysis for Passenger Experience
 
 
@@ -49,11 +52,3 @@ Communication: Keeping passengers informed about flight statuses and potential d
 
 Passenger Comfort: Insights into complaints about seating and legroom suggest that airlines should invest in amenities and services that enhance comfort, particularly on long-haul flights.
 
-Next Steps
-Looking ahead, further improvements can be achieved by:
-
-Hyperparameter Tuning: Refining the models to further boost accuracy.
-Advanced NLP Techniques: Experimenting with deep learning models to capture more subtle nuances in passenger feedback.
-Enhanced Data Collection: Increasing the volume and diversity of the dataset to reduce class imbalances and improve model robustness.
-Continuous Feedback Loops: Implementing systems to regularly collect and analyze passenger feedback, ensuring that the insights remain current and actionable.
-By integrating these recommendations, the sentiment analysis model not only stands as a powerful tool for understanding passenger experiences but also serves as a catalyst for ongoing improvements in service quality. Engaging with passengers via multiple channels, especially social media, and acting on their feedback can transform these insights into meaningful changes that elevate the overall travel experience.
