@@ -1,10 +1,22 @@
 import streamlit as st
 import pickle
 
-# Open a file in binary write mode
+# Placeholder for loading your trained model (update this part as needed)
+@st.cache_resource
+def load_model():
+    with open('sentiment_model.pkl', 'rb') as file:
+        model = pickle.load(file)
+    return model
+
+pipeline = load_model()
+
+# Sample data for demonstration purposes
+data = ["This is a sample review."]
+
+# Pickling data
 with open('data.pkl', 'wb') as file:
-    # Pickle the data
     pickle.dump(data, file)
+
 def get_sentiment_type(sentiment_label):
     if sentiment_label == -1:
         return "Negative"
@@ -83,18 +95,21 @@ def main():
     input_text = st.text_area("Enter your review:", height=150)
 
     if st.button("Predict"):
-        # Perform sentiment prediction using the loaded model
-        sentiment_label = pipeline.predict([input_text])[0]
-        confidence = pipeline.predict_proba([input_text]).max()
+        if input_text:
+            # Perform sentiment prediction using the loaded model
+            sentiment_label = pipeline.predict([input_text])[0]
+            confidence = pipeline.predict_proba([input_text]).max()
 
-        # Get the sentiment type based on the sentiment label
-        sentiment_type = get_sentiment_type(sentiment_label)
+            # Get the sentiment type based on the sentiment label
+            sentiment_type = get_sentiment_type(sentiment_label)
 
-        # Display prediction result with improved styling
-        st.subheader("Prediction Result")
-        st.write("Sentiment Label:", sentiment_label)
-        st.write("Sentiment Type:", sentiment_type)
-        st.write("Confidence:", f"{confidence:.2f}")
+            # Display prediction result with improved styling
+            st.subheader("Prediction Result")
+            st.write("Sentiment Label:", sentiment_label)
+            st.write("Sentiment Type:", sentiment_type)
+            st.write("Confidence:", f"{confidence:.2f}")
+        else:
+            st.write("Please enter a review for prediction.")
 
 if __name__ == "__main__":
     main()
