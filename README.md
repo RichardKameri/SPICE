@@ -23,34 +23,45 @@ Identify common themes and specific aspects mentioned in the reviews, such as in
                   
 
 
-Project Narrative: Sentiment Analysis for Passenger Experience
+**Project Narrative: Sentiment Analysis for Passenger Experience**
+
 
 
 In our journey to understand how passengers feel about their travel experiences, we embarked on a sentiment analysis project that combined data science techniques with practical insights. Our goal was to transform raw text feedback into actionable insights that could drive improvements across various aspects of the travel experience.
 
-Project Overview
+**Project Overview**
+
 The project began with the collection and preprocessing of a diverse dataset, capturing sentiments expressed by passengers. Using natural language processing (NLP) techniques, we converted textual feedback into a structured form by applying methods such as CountVectorizer, which allowed us to translate text into a term-frequency matrix. This step was crucial for preparing the data for subsequent analysis.
 
-Methodology
-We explored various classification models to predict the sentiment of passenger feedback. Each model was evaluated based on its performance on the test data, with Logistic Regression emerging as the best-performing model by achieving an accuracy of 83%. This strong performance highlighted its ability to capture the nuances in the passengers' sentiments despite some challenges such as class imbalance—particularly with the neutral sentiment, which had fewer instances.
+**Methodology**
 
-Model Performance and Interpretability
+We explored various classification models to predict the sentiment of passenger feedback. Each model was evaluated based on its performance on the test data, with Logistic Regression emerging as the best-performing model by achieving an accuracy of 84%. This strong performance highlighted its ability to capture the nuances in the passengers' sentiments despite some challenges such as class imbalance—particularly with the neutral sentiment, which had fewer instances.
+
+**Model Performance and Interpretability**
+
 Logistic Regression: Demonstrated high accuracy and maintained transparency in how decisions were made.
 Decision Trees & Random Forest: Offered insights into complex decision boundaries, with Random Forest slightly improving performance over simpler Decision Trees.
 Support Vector Machines (SVM): Provided an alternative classification approach, reinforcing the findings from other models.
 A critical insight from our analysis was the trade-off between model interpretability and complexity. While ensemble methods like Random Forests could achieve slightly higher accuracy, the simpler models such as Logistic Regression allowed us to better understand the underlying decision-making process—an important factor when translating insights into actionable business strategies.
 
-Key Findings and Recommendations
+**Key Findings and Recommendations**
+
 Our analysis not only identified the best model for sentiment prediction but also provided a roadmap for addressing key areas of passenger dissatisfaction:
 
-Punctuality Improvement: Negative sentiments linked to flight delays highlighted the need for enhanced punctuality. Prioritizing on-time performance can significantly improve passenger satisfaction.
+**Punctuality Improvement:** Negative sentiments linked to flight delays highlighted the need for enhanced punctuality. Prioritizing on-time performance can significantly improve passenger satisfaction.
 
-Customer Service Enhancement: Feedback regarding unhelpful or rude behavior from staff pointed to the need for improved customer service training and protocols.
+**Customer Service Enhancement:** Feedback regarding unhelpful or rude behavior from staff pointed to the need for improved customer service training and protocols.
 
-Communication: Keeping passengers informed about flight statuses and potential delays through timely and transparent communication can mitigate frustration and improve overall sentiment.
+**Communication:** Keeping passengers informed about flight statuses and potential delays through timely and transparent communication can mitigate frustration and improve overall sentiment.
 
-Passenger Comfort: Insights into complaints about seating and legroom suggest that airlines should invest in amenities and services that enhance comfort, particularly on long-haul flights.
-                 WORK FLOW OF THE PROJECT
+**Passenger Comfort:** Insights into complaints about seating and legroom suggest that airlines should invest in amenities and services that enhance comfort, particularly on long-haul flights.
+                     
+                      
+                      
+                      
+                
+                      
+                 
 This project conducts sentiment analysis on Kenya Airways customer reviews using Natural Language Processing (NLP).
 Key Steps:
 1.	Data Collection: Scraped reviews from airlinequality.com and stored them in a Pandas Data Frame.
@@ -66,8 +77,10 @@ Random Forest (0.81  Accuracy)
 
 SVM (0.84 Accuracy)
 
+7 Deployment using streamlit application
 
-7.	Insights & Recommendations:
+
+8.	Insights & Recommendations:
 Improve punctuality and customer service.
 
 Enhance communication and social media engagement.	
