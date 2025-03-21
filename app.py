@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import pandas as pd
 
 # Load the trained model using caching for performance
 @st.cache_resource
@@ -9,13 +10,6 @@ def load_model():
     return model
 
 pipeline = load_model()
-
-# Sample data for demonstration purposes (if needed)
-data = ["This is a sample review."]
-
-# Save sample data for future use (if needed)
-with open('data.pkl', 'wb') as file:
-    pickle.dump(data, file)
 
 def get_sentiment_type(sentiment_label):
     if sentiment_label == -1:
@@ -42,65 +36,6 @@ def main():
     )
     st.sidebar.info("Enter your review in the main area and hit *Predict* to see the results.")
     
-    # Custom CSS style for black and white theme
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #000000;
-            color: #FFFFFF;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        .stApp {
-            background-color: #121212;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-        }
-        .stButton button {
-            background-color: #FFFFFF;
-            color: #000000;
-            border: none;
-            border-radius: 12px;
-            padding: 12px 25px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .stButton button:hover {
-            background-color: #CCCCCC;
-        }
-        .stTextInput>div>div>input, .stTextArea>div>textarea {
-            border-radius: 12px;
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid #FFFFFF;
-            background-color: #333333;
-            color: #FFFFFF;
-        }
-        .stTitle {
-            color: #FFFFFF;
-            font-size: 42px;
-            font-weight: bold;
-        }
-        .stSubheader {
-            color: #DDDDDD;
-            font-size: 32px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .result-box {
-            border: 3px solid #FFFFFF; 
-            border-radius: 15px; 
-            padding: 20px; 
-            background-color: #222222;
-            margin-top: 20px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
     # Main page content
     st.title("Sky Opinion")
     st.subheader("Catching the Feelings from the Flights")
@@ -115,33 +50,33 @@ def main():
             # Perform sentiment prediction and calculate confidence score
             sentiment_label = pipeline.predict([input_text])[0]
             confidence = pipeline.predict_proba([input_text]).max()
-            
-            # Get the sentiment type string for display
             sentiment_type = get_sentiment_type(sentiment_label)
             
-            # Display prediction results in a styled result box
-            st.markdown(
-                f"""
-                <div class="result-box">
-                    <h3 style="color: #FFFFFF;">Prediction Result</h3>
-                    <p><strong>Sentiment Label:</strong> {sentiment_label}</p>
-                    <p><strong>Sentiment Type:</strong> {sentiment_type}</p>
-                    <p><strong>Confidence:</strong> {confidence:.2f}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            # Store results for error analysis
+            error_analysis = pd.DataFrame({
+                'Review': [input_text],
+                'Predicted Sentiment': [sentiment_type],
+                'Confidence': [confidence]
+            })
+            error_analysis.to_csv("error_analysis.csv", mode='a', header=False, index=False)
+            
+            # Display prediction results
+            st.markdown(f"""
+                **Prediction Result:**
+                - **Sentiment Label:** {sentiment_label}
+                - **Sentiment Type:** {sentiment_type}
+                - **Confidence:** {confidence:.2f}
+            """)
         else:
             st.error("🚨 Please enter a review for prediction.")
     
-    # Optional footer with developer info or additional links
-    st.markdown(
-        """
-        <hr style="border:1px solid #444">
-        <p style="text-align: center; font-size: 14px; color: #AAAAAA;">Made with ❤️ by Sky Opinion Team</p>
-        """,
-        unsafe_allow_html=True
-    )
-
+    # Display stored error analysis
+    if st.button("Show Error Analysis"):
+        try:
+            df = pd.read_csv("error_analysis.csv", names=['Review', 'Predicted Sentiment', 'Confidence'])
+            st.dataframe(df)
+        except FileNotFoundError:
+            st.error("No error analysis data available yet.")
+    
 if __name__ == "__main__":
     main()
