@@ -42,24 +42,24 @@ def main():
     )
     st.sidebar.info("Enter your review in the main area and hit *Predict* to see the results.")
     
-    # Custom CSS style for an appealing, colorful user interface
+    # Custom CSS style for black and white theme
     st.markdown(
         """
         <style>
         body {
-            background-color: #F7F9FC;
-            color: #333333;
+            background-color: #000000;
+            color: #FFFFFF;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .stApp {
-            background-color: #FFFFFF;
+            background-color: #121212;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
         }
         .stButton button {
-            background-color: #FF7F50;
-            color: #FFFFFF;
+            background-color: #FFFFFF;
+            color: #000000;
             border: none;
             border-radius: 12px;
             padding: 12px 25px;
@@ -67,31 +67,33 @@ def main():
             transition: background-color 0.3s ease;
         }
         .stButton button:hover {
-            background-color: #FF6347;
+            background-color: #CCCCCC;
         }
         .stTextInput>div>div>input, .stTextArea>div>textarea {
             border-radius: 12px;
             padding: 12px;
             font-size: 16px;
-            border: 2px solid #FF7F50;
+            border: 2px solid #FFFFFF;
+            background-color: #333333;
+            color: #FFFFFF;
         }
         .stTitle {
-            color: #FF6347;
+            color: #FFFFFF;
             font-size: 42px;
             font-weight: bold;
         }
         .stSubheader {
-            color: #555555;
+            color: #DDDDDD;
             font-size: 32px;
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 20px;
         }
         .result-box {
-            border: 3px solid #FF7F50; 
+            border: 3px solid #FFFFFF; 
             border-radius: 15px; 
             padding: 20px; 
-            background-color: #FFF0E6;
+            background-color: #222222;
             margin-top: 20px;
         }
         </style>
@@ -121,7 +123,7 @@ def main():
             st.markdown(
                 f"""
                 <div class="result-box">
-                    <h3 style="color: #FF6347;">Prediction Result</h3>
+                    <h3 style="color: #FFFFFF;">Prediction Result</h3>
                     <p><strong>Sentiment Label:</strong> {sentiment_label}</p>
                     <p><strong>Sentiment Type:</strong> {sentiment_type}</p>
                     <p><strong>Confidence:</strong> {confidence:.2f}</p>
@@ -135,8 +137,8 @@ def main():
     # Optional footer with developer info or additional links
     st.markdown(
         """
-        <hr style="border:1px solid #ddd">
-        <p style="text-align: center; font-size: 14px;">Made with ❤️ by Sky Opinion Team</p>
+        <hr style="border:1px solid #444">
+        <p style="text-align: center; font-size: 14px; color: #AAAAAA;">Made with ❤️ by Sky Opinion Team</p>
         """,
         unsafe_allow_html=True
     )
